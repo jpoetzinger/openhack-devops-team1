@@ -9,7 +9,7 @@ languages:
 products:
 - azure
 description: "The DevOps open hack event is designed to foster learning via implementing DevOps practices with a series of challenges."
-urlFragment: openhack-devops-team
+urlFragment: openhack-devops-team1
 ---
 
 # My Driving Team APIs
