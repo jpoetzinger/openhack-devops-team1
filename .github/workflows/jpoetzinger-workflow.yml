@@ -26,6 +26,6 @@ jobs:
         if: failure()
         with:
           title: User-Java Build Failed
-          token: ${{ secrets.ISSUE_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           assignees: ${{ github.actor }}
           body: Workflow failed for commit ${{ github.sha }}
