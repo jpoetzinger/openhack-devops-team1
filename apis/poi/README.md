@@ -1,5 +1,5 @@
 
-# POI Service test
+# POI Service
 
 ## Overview
 

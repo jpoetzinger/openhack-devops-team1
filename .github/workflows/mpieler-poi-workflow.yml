@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - '**-dev'
+      - 'mpieler1-dev'
     paths:
       - apis/poi/** 
   pull_request:
@@ -33,7 +33,7 @@ jobs:
     - name: Test
       run: dotnet test --filter UnitTest --no-build --verbosity normal
     - name: Publish
-      run: dotnet publish -p:PublishSingleFile=true --no-restore --no-build
+      run: dotnet publish poi.sln -p:PublishSingleFile=true --no-restore --no-build
 
       #copy
       #artifacts
