@@ -1,4 +1,4 @@
-name: poi
+name: .NET
 
 on:
   workflow_dispatch:
