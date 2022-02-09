@@ -6,6 +6,8 @@ on:
     branches:
       - main
       - '**-dev'
+    paths:
+      - 'apis/poi'
   pull_request:
     branches:
       - main
