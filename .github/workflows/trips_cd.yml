@@ -2,8 +2,7 @@ name: trips-ci
 on:
   push:
     paths:
-      - apis/trips/**
-      - .github/workflows/trips_ci.yml
+      - .github/workflows/trips_cd.yml
   pull_request:
     branches: 
     - main
@@ -19,7 +18,7 @@ jobs:
         uses: actions/checkout@v2
       - uses: azure/docker-login@v1
         with:
-          login-server: openhackwsj5rp15acr.azurecr.io
+          login-server: ${{ secrets.REGISTRY_URI }}
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
       - run: |
