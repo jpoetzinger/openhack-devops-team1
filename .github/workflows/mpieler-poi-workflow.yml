@@ -34,7 +34,11 @@ jobs:
       run: dotnet test --no-build --verbosity normal #--filter UnitTest
     - name: Publish
       run: dotnet publish poi.sln --no-restore --no-build
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2.3.1
+      with:
+        name: POI
+        path: web/**
+        if-no-files-found: warn
 
-      #copy
-      #artifacts
-      #create issue if fail
+      #create issue if build fails
