@@ -33,7 +33,7 @@ jobs:
     - name: Test
       run: dotnet test --filter UnitTest --no-build --verbosity normal
     - name: Publish
-      run: dotnet publish
+      run: dotnet publish -p:PublishSingleFile=true --no-restore --no-build
 
       #copy
       #artifacts
