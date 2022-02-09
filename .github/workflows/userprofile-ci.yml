@@ -1,4 +1,4 @@
-name: aldelar-userprofile-workflow
+name: userprofile-ci
 on:
   push:
     branches: [aldelar-dev]
