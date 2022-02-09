@@ -4,8 +4,8 @@ on:
     paths:
       - apis/user-java/**
   pull_requests:
-    paths:  
-      - apis/user-java/**
+    branches:
+      - main
 
   workflow_dispatch:
 
