@@ -37,7 +37,7 @@ jobs:
       uses: actions/upload-artifact@v2.3.1
       with:
         name: POI
-        path: ${{ github.workspace }}/*/web/*/publish
+        path: ${{ github.workspace }}/apis/poi/web/bin/Debug/netcoreapp3.1/publish/
         if-no-files-found: warn
     - name: Create issue from a failed build
       uses: nashmaniac/create-issue-action@v1.1
