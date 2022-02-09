@@ -16,7 +16,7 @@ FROM alpine:3.12 AS gorun
 #    https://vsupalov.com/docker-build-pass-environment-variables/
 ARG build_version="trips default"
 
-ENV SQL_USER="YourUserName" \
+ENV SQL_USER="hacker2dtn@msftopenhack6739ops.onmicrosoft.com" \
 SQL_PASSWORD="changeme" \
 SQL_SERVER="changeme.database.windows.net" \
 SQL_DBNAME="mydrivingDB" \
