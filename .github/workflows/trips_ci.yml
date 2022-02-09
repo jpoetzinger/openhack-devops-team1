@@ -22,6 +22,15 @@ jobs:
       - name: Get Modules
         run: go get
       - name: Build
-        run: go build
+        run: go build ./glide.yaml
       - run: go test ./tripsgo -run Unit
+      - uses: nashmaniac/create-issue-action@v1.1
+        if: ${{ failure() }} # only run when this job is failed.
+        name: Create Issue Action
+        with:
+          title: Unit Test for for trips failed
+          token: ${{secrets.ISSUE_TOKEN}}
+          assignees: ${{github.actor}}
+          labels: Challenge 3
+          body: Workflow failed for commit ${{github.sha}}
 
