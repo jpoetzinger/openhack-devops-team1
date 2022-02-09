@@ -2,16 +2,11 @@ name: trips-ci
 on:
   push:
     paths:
-      # - apis/trips/**
-      - .github/workflows/trips_cd.yml
+      - apis/trips/**
+      - .github/workflows/trips_ci.yml
   pull_request:
     branches: 
     - main
-    # paths:
-    #   - apis/trips/**
-    #   - .github/workflows/trips_ci.yml
-    # paths-ignore:
-    #   - '**.md'
 jobs:
   build:
     name: trips_cd
@@ -25,9 +20,10 @@ jobs:
       - uses: azure/docker-login@v1
         with:
           login-server: openhackwsj5rp15acr.azurecr.io
-          username: 'openhackwsj5rp15acr'
-          password: 'DPTreR0iX8rDCgCE+ZPa+o0SQ9MUYjRa'
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
       - run: |
           docker build . -t openhackwsj5rp15acr.azurecr.io/devopsoh/api-trips:${{ github.sha }}
           docker push openhackwsj5rp15acr.azurecr.io/devopsoh/api-trips:${{ github.sha }}     
+
 
