@@ -1,11 +1,17 @@
 name: trips-ci
 on:
   push:
-    branches:
-      - james-dev
+    branches: 
+    - james-dev
     paths:
       - apis/trips/**
       - .github/workflows/trips_ci.yml
+  pull_request:
+    branches: 
+    - main
+    # paths:
+    #   - apis/trips/**
+    #   - .github/workflows/trips_ci.yml
     # paths-ignore:
     #   - '**.md'
 jobs:
