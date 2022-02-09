@@ -7,9 +7,12 @@ on:
     # paths-ignore:
     #   - '**.md'
 jobs:
-  run:
+  build:
     name: Run
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: 'apis/trips'
     steps:
       - name: Checkout
         uses: actions/checkout@v2
