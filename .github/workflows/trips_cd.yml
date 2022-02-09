@@ -28,5 +28,6 @@ jobs:
           username: 'hacker2dtn@msftopenhack6739ops.onmicrosoft.com'
           password: '*cjE1BwtTi'
       - run: |
-          az acr build --image "devopsoh/api-trips:latest" --registry openhackwsj5rp15acr --file Dockerfile .
+          docker build . -t openhackwsj5rp15acr.azurecr.io/devopsoh/api-trips:${{ github.sha }}
+          docker push openhackwsj5rp15acr.azurecr.io/devopsoh/api-trips:${{ github.sha }}     
 
