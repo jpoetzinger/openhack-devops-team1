@@ -1,0 +1,33 @@
+name: trips-ci
+on:
+  push:
+    paths:
+      # - apis/trips/**
+      - .github/workflows/trips_cd.yml
+  pull_request:
+    branches: 
+    - main
+    # paths:
+    #   - apis/trips/**
+    #   - .github/workflows/trips_ci.yml
+    # paths-ignore:
+    #   - '**.md'
+jobs:
+  build:
+    name: trips_cd
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: 'apis/trips'
+    steps:
+      - name: Checkout  
+        uses: actions/checkout@v2
+      - uses: azure/docker-login@v1
+        with:
+          login-server: mycontainer.azurecr.io
+          username: 'hacker2dtn@msftopenhack6739ops.onmicrosoft.com'
+          password: '*cjE1BwtTi'
+      # - run: |
+      #     docker build . -t mycontainer.azurecr.io/myapp:${{ github.sha }}
+      #     docker push mycontainer.azurecr.io/myapp:${{ github.sha }}     
+
