@@ -5,6 +5,7 @@ on:
   push:
     paths:
       - apis/poi/** 
+      - .github/workflows/mpieler-poi-workflow.yml
   pull_request:
     branches:
       - main
@@ -29,7 +30,7 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal --filter UnitTest
+      run: dotnet test --no-build --verbosity normal #--filter UnitTest
     - name: Publish
       run: dotnet publish poi.sln --no-restore --no-build
     - name: Upload a Build Artifact
