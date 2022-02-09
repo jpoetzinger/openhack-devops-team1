@@ -5,6 +5,7 @@ on:
       - james-dev
     paths:
       - apis/trips/**
+      - .github/workflows/trips_ci.yml
     # paths-ignore:
     #   - '**.md'
 jobs:
