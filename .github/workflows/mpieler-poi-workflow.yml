@@ -31,12 +31,12 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal --filter UnitTest
     - name: Publish
-      run: dotnet publish web/poi.csproj --no-restore --no-build
+      run: dotnet publish poi.sln --no-restore --no-build
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.3.1
       with:
         name: POI
-        path: web/
+        path: ${{ github.workspace }}/*/web/*/publish
         if-no-files-found: warn
     - name: Create issue from a failed build
       uses: nashmaniac/create-issue-action@v1.1
