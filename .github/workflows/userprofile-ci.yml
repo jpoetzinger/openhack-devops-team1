@@ -1,7 +1,6 @@
 name: userprofile-ci
 on:
   push:
-    branches: [aldelar-dev]
     paths:
       - 'apis/userprofile/**'
   # Allows you to run this workflow manually from the Actions tab
