@@ -6,8 +6,8 @@ on:
     paths:
       - apis/poi/** 
   pull_request:
-    branches:
-      - main
+    paths:
+      - apis/poi/**
 
 defaults:
   run:
