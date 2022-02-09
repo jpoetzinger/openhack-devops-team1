@@ -48,3 +48,5 @@ It is useful but not required to have a basic knowledge of the following topics:
 The provisioning of this environment for proctors can be found in the [DevOps Openhack Proctor](https://github.com/Azure-Samples/openhack-devops-proctor) Github repository.
 
 ## johntest2
+
+## aldelar-dev
