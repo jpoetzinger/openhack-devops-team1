@@ -3,9 +3,6 @@ name: .NET
 on:
   workflow_dispatch:
   push:
-    branches:
-      - main
-      - '**-dev'
     paths:
       - 'apis/poi/'
   pull_request:
