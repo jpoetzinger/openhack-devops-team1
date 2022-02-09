@@ -1,5 +1,5 @@
 'use strict';
-var Test = require('tape');
+vvvvar Test = require('tape');
 var Express = require('express');
 var BodyParser = require('body-parser');
 var Swaggerize = require('swaggerize-express');
