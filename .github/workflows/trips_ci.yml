@@ -1,0 +1,20 @@
+name: trips-ci
+on:
+  push:
+    branches:
+      - james-dev
+      - 'apis/trips/**'
+    # paths-ignore:
+    #   - '**.md'
+jobs:
+  run:
+    name: Run
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: actions/setup-go@v2
+        with:
+          go-version: '^1.13.1' # The Go version to download (if necessary) and use.
+      - run: go run apis/trips/main.go
+
