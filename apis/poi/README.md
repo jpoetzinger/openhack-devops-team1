@@ -1,5 +1,5 @@
 
-# POI Service trigger build
+# POI Service
 
 ## Overview
 

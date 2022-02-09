@@ -1,4 +1,4 @@
-name: poi-ci
+name: mpieler-poi-workflow
 
 on:
   workflow_dispatch:
@@ -36,13 +36,13 @@ jobs:
       uses: actions/upload-artifact@v2.3.1
       with:
         name: POI
-        path: '**/publish/**'
+        path: web/
         if-no-files-found: warn
     - name: Create issue from a failed build
       uses: nashmaniac/create-issue-action@v1.1
       if: failure()
       with:
-        title: POI Build Failed ${{ GITHUB_RUN_NUMBER }}
+        title: POI Build Failed
         token: ${{ secrets.ISSUE_TOKEN }}
         assignees: ${{ github.actor }}
         body: Workflow failed for commit ${{ github.sha }}
