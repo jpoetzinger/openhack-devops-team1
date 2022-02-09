@@ -4,8 +4,8 @@ on:
     paths:
       - apis/userprofile/**
   pull_request:
-    paths:
-      - apis/userprofile/**
+    branches:
+      - main
 
 defaults:
   run:
