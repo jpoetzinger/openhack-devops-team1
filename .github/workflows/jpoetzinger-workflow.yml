@@ -3,6 +3,10 @@ on:
   push:
     paths:
       - apis/user-java/**
+  pull_requests:
+    paths:  
+      - apis/user-java/**
+
   workflow_dispatch:
 
 defaults:
