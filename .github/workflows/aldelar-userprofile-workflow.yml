@@ -1,6 +1,8 @@
-name: learn-github-actions
+name: aldelar-userprofile-workflow
 on:
   push:
+    branches:
+      - aldelar-dev  
     paths:
       - 'userprofile/**'
 jobs:
