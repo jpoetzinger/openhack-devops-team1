@@ -1,8 +1,6 @@
 name: trips-ci
 on:
   push:
-    branches: 
-    - james-dev
     paths:
       - apis/trips/**
       - .github/workflows/trips_ci.yml
@@ -16,7 +14,7 @@ on:
     #   - '**.md'
 jobs:
   build:
-    name: Run
+    name: trips_ci_build
     runs-on: ubuntu-latest
     defaults:
       run:
