@@ -27,5 +27,5 @@ jobs:
           title: userprofile Build Failed
           token: ${{secrets.GITHUB_TOKEN}}
           assignees: ${{github.actor}}
-          labels: worflow-failed
+          labels: userprofile-build-failure
           body: Workflow failed for commit ${{github.sha}}
