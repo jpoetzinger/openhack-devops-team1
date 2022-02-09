@@ -25,8 +25,8 @@ jobs:
       - uses: azure/docker-login@v1
         with:
           login-server: openhackwsj5rp15acr.azurecr.io
-          username: 'hacker2dtn@msftopenhack6739ops.onmicrosoft.com'
-          password: '*cjE1BwtTi'
+          username: 'openhackwsj5rp15acr'
+          password: 'DPTreR0iX8rDCgCE+ZPa+o0SQ9MUYjRa'
       - run: |
           docker build . -t openhackwsj5rp15acr.azurecr.io/devopsoh/api-trips:${{ github.sha }}
           docker push openhackwsj5rp15acr.azurecr.io/devopsoh/api-trips:${{ github.sha }}     
