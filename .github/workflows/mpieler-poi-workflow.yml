@@ -15,7 +15,7 @@ defaults:
     working-directory: 'apis/poi/'
 
 jobs:
-  build:
+  poi-ci:
 
     runs-on: ubuntu-latest
 
