@@ -2,7 +2,7 @@ name: trips-ci
 on:
   push:
     branches: 
-      - main
+      - james-dev
     paths:
       - .github/workflows/trips_cd.yml
       - apis/trips/**
@@ -25,5 +25,8 @@ jobs:
       - run: |
           docker build . -t ${{ secrets.REGISTRY_URI }}/devopsoh/api-trips:${{ github.sha }}
           docker push ${{ secrets.REGISTRY_URI }}/devopsoh/api-trips:${{ github.sha }}     
-
-
+      - uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'openhackwsj5rp15trips'
+          publish-profile: ${{ secrets.azureWebAppPublishProfile }}
+          images: '${{ secrets.REGISTRY_URI }}/devopsoh/api-trips:${{ github.sha }}'
