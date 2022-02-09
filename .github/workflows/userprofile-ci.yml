@@ -1,13 +1,11 @@
 name: userprofile-ci
 on:
   push:
-    #branches:
-      #- aldelar-dev
     paths:
       - apis/userprofile/**
   pull_request:
-    #branches:
-      #- main
+    paths:
+      - apis/userprofile/**
 
 defaults:
   run:
