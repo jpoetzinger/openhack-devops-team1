@@ -1,8 +1,6 @@
 name: jpoetzinger-workflow
 on: 
   push:
-    branches: 
-      - jpoetzinger-dev
     paths:
       - apis/user-java/**
   workflow_dispatch:
