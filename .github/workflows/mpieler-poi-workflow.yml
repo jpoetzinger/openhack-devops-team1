@@ -5,6 +5,7 @@ on:
   push:
     paths:
       - apis/poi/** 
+      - .github/workflows/mpieler-poi-workflow.yml
   pull_request:
     branches:
       - main
@@ -14,7 +15,7 @@ defaults:
     working-directory: 'apis/poi/'
 
 jobs:
-  build:
+  poi-ci:
 
     runs-on: ubuntu-latest
 
@@ -36,7 +37,13 @@ jobs:
       uses: actions/upload-artifact@v2.3.1
       with:
         name: POI
-        path: web/**
+        path: ${{ github.workspace }}/apis/poi/web/bin/Debug/netcoreapp3.1/publish/
         if-no-files-found: warn
-
-      #create issue if build fails
+    - name: Create issue from a failed build
+      uses: nashmaniac/create-issue-action@v1.1
+      if: failure()
+      with:
+        title: POI Build Failed
+        token: ${{ secrets.ISSUE_TOKEN }}
+        assignees: ${{ github.actor }}
+        body: Workflow failed for commit ${{ github.sha }}
