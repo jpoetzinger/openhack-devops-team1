@@ -1,11 +1,12 @@
 name: trips-ci
 on:
   push:
+    branches: 
+      - main
     paths:
       - .github/workflows/trips_cd.yml
-  pull_request:
-    branches: 
-    - main
+      - apis/trips/**
+
 jobs:
   build:
     name: trips_cd
@@ -22,7 +23,7 @@ jobs:
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
       - run: |
-          docker build . -t openhackwsj5rp15acr.azurecr.io/devopsoh/api-trips:${{ github.sha }}
-          docker push openhackwsj5rp15acr.azurecr.io/devopsoh/api-trips:${{ github.sha }}     
+          docker build . -t ${{ secrets.REGISTRY_URI }}/devopsoh/api-trips:${{ github.sha }}
+          docker push ${{ secrets.REGISTRY_URI }}/devopsoh/api-trips:${{ github.sha }}     
 
 
