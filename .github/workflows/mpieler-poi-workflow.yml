@@ -1,4 +1,4 @@
-name: .NET
+name: mpieler-poi
 
 on:
   workflow_dispatch:
