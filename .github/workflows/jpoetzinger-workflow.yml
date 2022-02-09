@@ -3,7 +3,7 @@ on:
   push:
     paths:
       - apis/user-java/**
-  pull_requests:
+  pull_request:
     branches:
       - main
 
