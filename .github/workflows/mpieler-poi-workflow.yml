@@ -3,8 +3,10 @@ name: mpieler-poi-workflow
 on:
   workflow_dispatch:
   push:
-    paths:
-      - 'apis/poi/**'
+    branches:
+      - '**-dev'
+    #paths:
+      #- apis/poi/** 
   pull_request:
     branches:
       - main
