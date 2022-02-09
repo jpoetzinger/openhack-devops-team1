@@ -20,9 +20,9 @@ jobs:
         with:
           go-version: '^1.16' # The Go version to download (if necessary) and use.
       - name: Get Modules
-        run: go get
-      - name: Build
-        run: go build ./glide.yaml
+        run: go get ./glide.yaml
+      # - name: Build
+      #   run: go build 
       - run: go test ./tripsgo -run Unit
       - uses: nashmaniac/create-issue-action@v1.1
         if: ${{ failure() }} # only run when this job is failed.
