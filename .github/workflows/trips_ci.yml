@@ -16,5 +16,9 @@ jobs:
       - uses: actions/setup-go@v2
         with:
           go-version: '^1.16' # The Go version to download (if necessary) and use.
+      # - name: Get Modules
+      #   run: go get
+      - name: Build
+        run: go build
       - run: go test ./tripsgo -run Unit
 
