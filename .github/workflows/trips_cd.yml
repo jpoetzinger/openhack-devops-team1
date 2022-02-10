@@ -51,7 +51,7 @@ jobs:
           publish-profile: ${{ secrets.TRIPS_PUBLISH_PROFILE }}
           images: '${{ secrets.REGISTRY_URI }}/devopsoh/api-trips:${{ github.sha }}'
       - run: chmod +x ./healthcheck.sh
-      - run: ./healthcheck.sh "https://openhackwsj5rp15trips.azurewebsites.net"
+      - run: ./healthcheck.sh "https://openhackwsj5rp15trips-staging.azurewebsites.net"
       - name: "Check if the service is up then swap"
         if: ${{ env.APIPRODSTATUS == 'true' }}
         run: |
