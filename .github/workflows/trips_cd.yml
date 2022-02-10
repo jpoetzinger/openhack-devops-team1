@@ -2,7 +2,7 @@ name: trips-ci
 on:
   push:
     branches: 
-      - james-dev
+      - main
     paths:
       - .github/workflows/trips_cd.yml
       - apis/trips/**
