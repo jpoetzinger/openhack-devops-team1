@@ -39,4 +39,12 @@ jobs:
           images: '${{ secrets.REGISTRY_URI }}/devopsoh/api-trips:${{ github.sha }}'
       - run: chmod +x ../../test/healthcheck.sh
       - run: ../../test/healthcheck.sh "https://openhackwsj5rp15trips.azurewebsites.net"
+      - name: "Check if the service is up"
+        if: ${{ env.APIPRODSTATUS == 'true' }}
+        run: echo "Service is up"
+      - name: "Check if the service is down"
+        if: ${{ env.APIPRODSTATUS == 'false' }}
+        run: echo "Service is down"
+
+
       # - run: az webapp traffic-routing set --distribution staging=50 --name openhackwsj5rp15trips --resource-group openhackwsj5rp15rg
