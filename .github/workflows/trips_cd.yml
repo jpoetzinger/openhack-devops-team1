@@ -2,7 +2,7 @@ name: trips-ci
 on:
   push:
     branches: 
-      - main
+      - james-dev
     paths:
       - .github/workflows/trips_cd.yml
       - apis/trips/**
@@ -35,3 +35,4 @@ jobs:
           app-name: 'openhackwsj5rp15trips'
           publish-profile: ${{ secrets.TRIPS_PUBLISH_PROFILE }}
           images: '${{ secrets.REGISTRY_URI }}/devopsoh/api-trips:${{ github.sha }}'
+      - run: scripts/poll.sh "https://openhackwsj5rp15trips.azurewebsites.net"
