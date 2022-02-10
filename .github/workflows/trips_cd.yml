@@ -35,15 +35,21 @@ jobs:
     needs: trips_build
     defaults:
       run:
-        working-directory: 'apis/trips'
+        working-directory: 'test'
     steps:
+      - name: Checkout  
+        uses: actions/checkout@v2
+      - name: 'Login via Azure CLI'
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
       - uses: azure/webapps-deploy@v2
         with:
           app-name: 'openhackwsj5rp15trips'
           publish-profile: ${{ secrets.TRIPS_PUBLISH_PROFILE }}
           images: '${{ secrets.REGISTRY_URI }}/devopsoh/api-trips:${{ github.sha }}'
-      - run: chmod +x ../../test/healthcheck.sh
-      - run: ../../test/healthcheck.sh "https://openhackwsj5rp15trips.azurewebsites.net"
+      - run: chmod +x ./healthcheck.sh
+      - run: ./healthcheck.sh "https://openhackwsj5rp15trips.azurewebsites.net"
       - name: "Check if the service is up then swap"
         if: ${{ env.APIPRODSTATUS == 'true' }}
         run: |
@@ -60,6 +66,12 @@ jobs:
       run:
         working-directory: 'test'
     steps:
+      - name: Checkout  
+        uses: actions/checkout@v2
+      - name: 'Login via Azure CLI'
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
       - name: "Swapping production and staging"
         run: |
           az webapp deployment slot swap --name openhackwsj5rp15trips --resource-group openhackwsj5rp15rg --slot staging  --target-slot production
