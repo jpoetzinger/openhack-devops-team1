@@ -6,13 +6,11 @@ on:
     paths:
       - .github/workflows/trips_cd.yml
       - apis/trips/**
-
+env: 
+  APIPRODSTATUS: false
 jobs:
-  build:
-    name: trips_cd
+  trips_build:
     runs-on: ubuntu-latest
-    env: 
-      APIPRODSTATUS: false
     defaults:
       run:
         working-directory: 'apis/trips'
@@ -31,7 +29,14 @@ jobs:
           password: ${{ secrets.REGISTRY_PASSWORD }}
       - run: |
           docker build . -t ${{ secrets.REGISTRY_URI }}/devopsoh/api-trips:${{ github.sha }}
-          docker push ${{ secrets.REGISTRY_URI }}/devopsoh/api-trips:${{ github.sha }}     
+          docker push ${{ secrets.REGISTRY_URI }}/devopsoh/api-trips:${{ github.sha }} 
+  trips_staging_deployment:    
+    runs-on: ubuntu-latest
+    needs: trips_build
+    defaults:
+      run:
+        working-directory: 'apis/trips'
+    steps:
       - uses: azure/webapps-deploy@v2
         with:
           app-name: 'openhackwsj5rp15trips'
@@ -42,8 +47,31 @@ jobs:
       - name: "Check if the service is up then swap"
         if: ${{ env.APIPRODSTATUS == 'true' }}
         run: |
-          echo "Service is up"
-          az webapp deployment slot swap set --name openhackwsj5rp15trips --resource-group openhackwsj5rp15rg --slot staging  --target-slot production
+          echo "Service is up, moving to swap."
       - name: "Check if the service is down"
         if: ${{ env.APIPRODSTATUS == 'false' }}
-        run: echo "Service is down"
+        run: |
+          echo "Service is down"
+          exit 1
+  trips_production_swap:
+    runs-on: ubuntu-latest
+    needs: trips_staging_deployment
+    defaults:
+      run:
+        working-directory: 'test'
+    steps:
+      - name: "Swapping production and staging"
+        run: |
+          az webapp deployment slot swap --name openhackwsj5rp15trips --resource-group openhackwsj5rp15rg --slot staging  --target-slot production
+          echo "production swap complete, now test "
+          ./healthcheck.sh "https://openhackwsj5rp15trips.azurewebsites.net"
+      - name: "Check if the prod service is up"
+        if: ${{ env.APIPRODSTATUS == 'true' }}
+        run: |
+          echo "production service is good"
+      - name: "Check if the prod service is down"
+        if: ${{ env.APIPRODSTATUS == 'false' }}
+        run: |
+          echo "prod service is down, roll back"
+          az webapp deployment slot swap --name openhackwsj5rp15trips --resource-group openhackwsj5rp15rg --slot staging  --target-slot production
+          exit 1
