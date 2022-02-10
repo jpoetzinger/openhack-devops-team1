@@ -88,3 +88,6 @@ jobs:
           echo "prod service is down, roll back"
           az webapp deployment slot swap --name openhackwsj5rp15trips --resource-group openhackwsj5rp15rg --slot staging  --target-slot production
           exit 1
+
+
+  

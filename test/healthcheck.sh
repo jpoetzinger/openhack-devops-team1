@@ -48,5 +48,4 @@ else
   echo "API DOWN"
   APISTATUS="Down"
   echo "APIPRODSTATUS=false" >> $GITHUB_ENV
-  exit 1;
 fi
