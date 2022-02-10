@@ -1,0 +1,29 @@
+name: trips-ci
+on:
+  push:
+    branches: 
+      - main
+    paths:
+      - .github/workflows/trips_cd.yml
+      - apis/trips/**
+
+jobs:
+  build:
+    name: trips_cd
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: 'apis/trips'
+    steps:
+      - name: Checkout  
+        uses: actions/checkout@v2
+      - uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.REGISTRY_URI }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+      - run: |
+          docker build . -t ${{ secrets.REGISTRY_URI }}/devopsoh/api-trips:${{ github.sha }}
+          docker push ${{ secrets.REGISTRY_URI }}/devopsoh/api-trips:${{ github.sha }}     
+
+

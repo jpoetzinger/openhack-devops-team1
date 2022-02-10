@@ -1,10 +1,13 @@
 name: jpoetzinger-workflow
 on: 
   push:
-    branches: 
-      - jpoetzinger-dev
     paths:
       - apis/user-java/**
+      - .github/workflows/jpoetzinger-workflow.yml
+  pull_request:
+    branches:
+      - main
+
   workflow_dispatch:
 
 defaults:
@@ -19,3 +22,11 @@ jobs:
       - uses: actions/setup-node@v2
       - run: mvn clean install
       - run: mvn test
+      - name: Create issue from a failed build
+        uses: nashmaniac/create-issue-action@v1.1
+        if: ${{ failure() }}
+        with:
+          title: User-Java Build Failed
+          token: ${{ secrets.GITHUB_TOKEN }}
+          assignees: ${{ github.actor }}
+          body: Workflow failed for commit ${{ github.sha }}
