@@ -2,7 +2,7 @@ name: trips-cd
 on:
   push:
     branches: 
-      - main
+      - james-dev
     paths:
       - .github/workflows/trips_cd.yml
       - apis/trips/**
@@ -43,6 +43,8 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Start the staging slot
+        run: az webapp start --name openhackwsj5rp15trips --resource-group openhackwsj5rp15rg --slot staging
       - uses: azure/webapps-deploy@v2
         with:
           app-name: 'openhackwsj5rp15trips'
