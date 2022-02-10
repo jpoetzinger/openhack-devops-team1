@@ -43,10 +43,10 @@ if [ $status200count -gt 5 ]; then
   echo "API UP"
   # APISTATUS is a pipeline variable
   APISTATUS="Up"
-  echo ::set-env name=APIPRODSTATUS::true
+  echo "APIPRODSTATUS=true" >> $GITHUB_ENV
 else
   echo "API DOWN"
   APISTATUS="Down"
-  echo ::set-env name=APIPRODSTATUS::false
+  echo "APIPRODSTATUS=false" >> $GITHUB_ENV
   exit 1;
 fi
