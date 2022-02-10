@@ -77,11 +77,12 @@ jobs:
           az webapp deployment slot swap --name openhackwsj5rp15trips --resource-group openhackwsj5rp15rg --slot staging  --target-slot production
           echo "production swap complete, now test "
           chmod +x ./healthcheck.sh
-          ./healthcheck.sh "https://openhackwsj5rp15trips.azurewebsitesee.net"
+          ./healthcheck.sh "https://openhackwsj5rp15trips.azurewebsites.net"
       - name: "Check if the prod service is up"
         if: ${{ env.APIPRODSTATUS == 'true' }}
         run: |
-          echo "production service is good"
+          echo "production service is good, now stop staging slot"
+          az webapp stop --name openhackwsj5rp15trips --resource-group openhackwsj5rp15rg --slot staging
       - name: "Check if the prod service is down"
         if: ${{ env.APIPRODSTATUS == 'false' }}
         run: |
