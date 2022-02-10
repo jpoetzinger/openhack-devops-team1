@@ -17,6 +17,11 @@ jobs:
     steps:
       - name: Checkout  
         uses: actions/checkout@v2
+      - name: 'Login via Azure CLI'
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
       - uses: azure/docker-login@v1
         with:
           login-server: ${{ secrets.REGISTRY_URI }}
@@ -28,5 +33,5 @@ jobs:
       - uses: azure/webapps-deploy@v2
         with:
           app-name: 'openhackwsj5rp15trips'
-          publish-profile: ${{ secrets.azureWebAppPublishProfile }}
+          publish-profile: ${{ secrets.TRIPS_PUBLISH_PROFILE }}
           images: '${{ secrets.REGISTRY_URI }}/devopsoh/api-trips:${{ github.sha }}'
