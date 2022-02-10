@@ -11,6 +11,9 @@ jobs:
   build:
     name: trips_cd
     runs-on: ubuntu-latest
+    env: 
+      APIPRODSTATUS: false
+      ACTIONS_ALLOW_UNSECURE_COMMANDS: true
     defaults:
       run:
         working-directory: 'apis/trips'
