@@ -1,4 +1,4 @@
-name: trips-ci
+name: trips-cd
 on:
   push:
     branches: 
