@@ -6,7 +6,7 @@ declare endpoint
 declare -i status200count=0
 
 # Paste the webapp site you want to monitor
-endpoint= $1
+endpoint=$1
 
 
 for i in {1..12}
